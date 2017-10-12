@@ -98,14 +98,14 @@ After previous job, it was possible to calculate vehicle position with respect t
 ```python
 # rightx_int and leftx_int are the interception of polinomials
 position = (rightx_int+leftx_int)/2
-distance_from_center = abs((640 - position)*3.7/700)
+distance_from_center = abs((640 - position)*3.7/800)
 ```
 
 I then calcuated radius of curature using by following code:
 
 ```python
 ym_per_pix = 30./720
-xm_per_pix = 3.7/700
+xm_per_pix = 3.7/800
 # Must do each lane lines
 fit_cr = np.polyfit(yvals*ym_per_pix, xvals*xm_per_pix, 2)
 curverad = ((1 + (2*fit_cr[0]*np.max(yvals) + fit_cr[1])**2)**1.5) / np.absolute(2*fit_cr[0])
@@ -117,13 +117,13 @@ Fitting a polynomial to the lane lines and warp the detected lane boundaries bac
 
 ### 6. Output Visual Display
 
-At last, in order to show the result smoothly, I setted up to remember the average of coefficients of previous 10 steps' polynomial.
+At last, in order to show the result smoothly, I setted up to remember the average of coefficients of previous 10 steps' polynomial. Here's a [link to my video result](./project_result.mp4) and a GIF file below:
 
-![Here's a [link to my video result](./project_result.mp4).][image6]
+![][image6]
 
+
+Discussion
 ---
-
-### 7. Discussion
 
 | Challenge   | Harder Challenge  |
 |:-----------:|:-----------------:|
