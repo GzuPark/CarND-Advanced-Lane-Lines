@@ -104,11 +104,12 @@ distance_from_center = abs((640 - position)*3.7/800)
 I then calcuated radius of curature using by following code:
 
 ```python
-ym_per_pix = 30./720
+ym_per_pix = 15./720
 xm_per_pix = 3.7/800
+y_eval = np.max(yvals)
 # Must do each lane lines
 fit_cr = np.polyfit(yvals*ym_per_pix, xvals*xm_per_pix, 2)
-curverad = ((1 + (2*fit_cr[0]*np.max(yvals) + fit_cr[1])**2)**1.5) / np.absolute(2*fit_cr[0])
+curverad = ((1 + (2*fit_cr[0]*y_eval*ym_per_pix + fit_cr[1])**2)**1.5) / np.absolute(2*fit_cr[0])
 ```
 
 Fitting a polynomial to the lane lines and warp the detected lane boundaries back onto the original image look like below:
